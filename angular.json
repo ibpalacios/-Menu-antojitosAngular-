@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Menu-antojitos-Angular"
+    }
+  },
+  "defaultProject": "Menu-antojitos-Angular",
+  "cli": {
+    "analytics": "453bddf6-25e4-4da6-985c-2eb841faad0b"
+  }
 }

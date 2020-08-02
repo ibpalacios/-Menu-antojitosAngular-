@@ -1,0 +1,46 @@
+<div class="container">
+    <h4>Editar Categoria</h4>
+    <hr>
+</div>
+
+<form (ngSubmit)="updateCategory(forma)" #forma="ngForm" novalidate="" enctype="multipart/form-data">
+    <div class="form-group-sm small">
+
+        <div class="row">
+            <div class="form-group col-md-12">
+
+                <div>
+                    <input [class.is-invalid]="strName.invalid && strName.touched" class="form-control form-control-sm" type="text " placeholder="Nombre de Categoria" name="strName" [(ngModel)]="category.strName" required #strName="ngModel">
+                    <div class="invalid-feedback" *ngIf="strName.errors?.required">
+                        <small>
+                            Es necesario ingresar un nombre.
+                        </small>
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <textarea [class.is-invalid]="strDescription.invalid && strDescription.touched" class="form-control form-control-sm" rows="10" placeholder="Descripción" name="strDescription" [(ngModel)]="category.strDescription" required #strDescription="ngModel"></textarea>
+                    <div class="invalid-feedback" *ngIf="strDescription.errors?.required">
+                        <small>
+                            Es necesario ingresar una descripción.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="mt-2">
+                    <select class="custom-select form-control form-control-sm" type="text" name="blnStatus" [(ngModel)]="category.blnStatus" #blnStatus="ngModel">
+                        <option [ngValue]="true">Activo</option>
+                        <option [ngValue]="false">Inactivo</option>
+                      </select>
+                </div>
+
+                <div class="mt-2">
+                    <button (click)="editCanceled()" type="submit" class="btn btn-danger btn-sm" style="width: 47%;">Cancelar</button>
+                    <button [disabled]="forma.invalid" type="submit" class="btn btn-success btn-sm float-right" style="width: 47%;">Editar</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</form>
+

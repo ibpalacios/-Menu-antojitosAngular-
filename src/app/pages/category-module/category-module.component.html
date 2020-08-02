@@ -1,0 +1,76 @@
+<div class="card">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="container mt-4" *ngIf="edit">
+                <app-register-category (refresh)="refreshTable($event)"></app-register-category>
+            </div>
+
+            <div class="container mt-4" *ngIf="!edit">
+                <app-update-category (optionCancel)="editCanceled($event)" [idCategory]="idCategory" (refresh)="refreshTable($event)"></app-update-category>
+            </div>
+        </div>
+
+
+        <div class="col-md-8">
+            <form>
+                <div class="row container mt-4">
+                    <div class="col-md-11 mt-2">
+                        <input type="text" name="searchText" class="form-control form-control-sm btn-outline-light border-dark ops" placeholder=" Buscar...">
+                    </div>
+                    <div class="col-md-1 mt-2">
+                        <div>
+                            <button type="button" class="btn btn-primary btn-sm" id="dropdownReports" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">...</button>
+                            <div class="dropdown-menu dropdown-menu-right shadow-lg " aria-labelledby="dropdownReports">
+                                <a type="button" class="dropdown-item">PDF</a>
+                                <a type="button" class="dropdown-item">Excel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row container mt-4">
+                    <div class="container small">
+                        <div class="row">
+                            <div class="col-12">
+
+                                <table class="table table-sm table-hover table-borderless">
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th>NOMBRE</th>
+                                            <th>DESCRIPCION</th>
+                                            <th>ESTATUS</th>
+                                            <th>ACCIONES</th>
+                                        </tr>
+                                    </thead>
+
+                                    <!-- SE MUESTRA CUANDO HAY REGISTROS -->
+                                    <tbody class="text-center text-info">
+                                        <tr *ngFor="let category of categories">
+                                            <td> {{ category.strName }} </td>
+                                            <td> {{ category.strDescription }} </td>
+                                            <td *ngIf="category.blnStatus === activo" >Activo</td>
+                                            <td *ngIf="category.blnStatus !== activo" >Desactivo</td>
+                                            <td class=" text-center ">
+                                                <button type="button" class="btn btn-primary btn-sm" id="dropdownReports" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">...</button>
+                                                <div class="dropdown-menu dropdown-menu-right shadow-lg " aria-labelledby="dropdownReports">
+                                                    <div class="dropdown-header text-info">
+                                                        <span class="text-xs text-uppercase ">opciones</span>
+                                                    </div>
+                                                    <a type="button"  (click)="editCategory(false, category._id)" class="dropdown-item">Editar</a>
+                                                    <a type="button" (click)="StatusCategoryFalse(category._id)" *ngIf="category.blnStatus === false" class="dropdown-item">Activar</a>
+                                                    <a type="button" (click)="StatusCategoryTrue(category._id)" *ngIf="category.blnStatus === true" class="dropdown-item">Desactivar</a>
+                                                    <a type="button" [routerLink]="['/cymbal-page']" class="dropdown-item">Gestionar Platillos</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
