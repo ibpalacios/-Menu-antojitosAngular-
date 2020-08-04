@@ -2,11 +2,11 @@
     <div class="row">
         <div class="col-md-4">
             <div class="container mt-4" *ngIf="edit">
-                <app-register-cymbal></app-register-cymbal>
+                <app-register-cymbal (refresh)="refreshTable($event)" [idCategory]="idCategory"></app-register-cymbal>
             </div>
 
             <div class="container mt-4" *ngIf="!edit">
-                <app-update-cymbal></app-update-cymbal>
+                <app-update-cymbal (optionCancel)="editCanceled($event)" [idCymbal]="idCymbal" (refresh)="refreshTable($event)"></app-update-cymbal>
             </div>
         </div>
 
@@ -14,12 +14,12 @@
         <div class="col-md-8">
             <form>
                 <div class="row container mt-4">
-                    <div class="col-md-11 mt-2">
-                        <input type="text" name="searchText" class="form-control form-control-sm btn-outline-light border-dark ops" placeholder=" Buscar...">
+                    <div class="col-md-11 mt-2 form-group">
+                        <input [(ngModel)]="searchText" type="text" name="searchText" class="form-control form-control-sm btn-outline-light border-dark ops" placeholder=" Buscar...">
                     </div>
-                    <div class="col-md-1 mt-2">
+                    <div class="col-md-1 mt-2 form-group">
                         <div>
-                            <button type="button" class="btn btn-primary btn-sm" id="dropdownReports" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">...</button>
+                            <button type="button" class="btn btn-primary btn-sm form-control" id="dropdownReports" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">...</button>
                             <div class="dropdown-menu dropdown-menu-right shadow-lg " aria-labelledby="dropdownReports">
                                 <a type="button" class="dropdown-item">PDF</a>
                                 <a type="button" class="dropdown-item">Excel</a>
@@ -33,7 +33,7 @@
                         <div class="row">
                             <div class="col-12">
 
-                                <table class="table table-sm table-hover table-borderless">
+                                <table class="table table-sm table-hover table-responsive table-borderless">
                                     <thead class="text-center">
                                         <tr>
                                             <th>NOMBRE</th>
@@ -48,7 +48,7 @@
 
                                     <!-- SE MUESTRA CUANDO HAY REGISTROS -->
                                     <tbody class="text-center text-info">
-                                        <tr *ngFor="let cymbal of saucers">
+                                        <tr *ngFor="let cymbal of saucers | filter:searchText">
                                             <td> {{ cymbal.strName }} </td>
                                             <td> {{ cymbal.strDescription }} </td>
                                             <td> {{ cymbal.strIngredients }} </td>
@@ -63,7 +63,8 @@
                                                         <span class="text-xs text-uppercase ">opciones</span>
                                                     </div>
                                                     <a type="button"  (click)="editCymbal(false, cymbal._id)" class="dropdown-item">Editar</a>
-                                                    <a type="button" class="dropdown-item">Activar/Desactivar</a>
+                                                    <a type="button" (click)="StatusCymbalFalse(cymbal._id)" *ngIf="cymbal.blnStatus === false" class="dropdown-item">Activar</a>
+                                                    <a type="button" (click)="StatusCymbalTrue(cymbal._id)" *ngIf="cymbal.blnStatus === true" class="dropdown-item">Desactivar</a>
                                                 </div>
                                             </td>
                                         </tr>

@@ -9,7 +9,7 @@ import { CymbalModuleComponent } from './pages/cymbal-module/cymbal-module.compo
 
 const routes: Routes = [
   { path: 'category-page', component: CategoryModuleComponent },
-  { path: 'cymbal-page', component: CymbalModuleComponent },
+  { path: 'cymbal-page/:id', component: CymbalModuleComponent },
   { path: '', pathMatch: 'full', redirectTo: 'category-page' }
 ];
 

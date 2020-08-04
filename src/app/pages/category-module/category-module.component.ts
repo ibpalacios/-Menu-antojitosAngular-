@@ -12,6 +12,7 @@ export class CategoryModuleComponent implements OnInit {
  
   categoryStatus: CategoryModel = new CategoryModel();
   categories: CategoryModel [] = []
+  searchText: any;
   idCategory: string;
   activo: Boolean = true;
   edit: boolean = true;

@@ -3,7 +3,12 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from "@angular/forms";
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { FilePondModule, registerPlugin } from 'ngx-filepond';
 
+
+import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
+registerPlugin(FilePondPluginFileValidateType);
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,7 +36,9 @@ import { RegisterCymbalComponent } from './pages/cymbal-module/register-cymbal/r
     AppRoutingModule,
     HttpClientModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    Ng2SearchPipeModule,
+    FilePondModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -19,7 +19,7 @@ export class UpdateCategoryComponent implements OnInit {
   constructor(private categoryService: CategoryService) { }
 
   ngOnInit(): void {
-    this.getModalidadesWithId();
+    this.getCategoreisWithId();
   }
 
   updateCategory(form: NgForm){
@@ -49,7 +49,7 @@ export class UpdateCategoryComponent implements OnInit {
     })
   }
 
-  getModalidadesWithId(){
+  getCategoreisWithId(){
     this.categoryService.getCategoryWithId(this.idCategory).then((res: any) => {
       this.category = res.cnt;
     }).catch(err => {

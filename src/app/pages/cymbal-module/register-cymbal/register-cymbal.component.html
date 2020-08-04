@@ -3,63 +3,60 @@
     <hr>
 </div>
 
-<form novalidate="" enctype="multipart/form-data">
+<form (ngSubmit)="registerCymbal(forma)" #forma="ngForm" novalidate="" enctype="multipart/form-data">
     <div class="form-group-sm small">
-
         <div class="row">
             <div class="form-group col-md-12">
-
-                <div>
-                    <input class="form-control form-control-sm" type="text " placeholder="Nombre del platillo" name="strName" required>
-                    <!-- <div class="invalid-feedback" *ngIf="strCarrera.errors?.required">
+                <div> 
+                    <input [class.is-invalid]="strName.invalid && strName.touched" class="form-control form-control-sm" type="text " placeholder="Nombre del platillo" name="strName" [(ngModel)]="cymbal.strName" required #strName="ngModel">
+                    <div class="invalid-feedback" *ngIf="strName.errors?.required">
                         <small>
-                            Es necesario ingresar un nombre.
+                            Es necesario ingresar un Nombre.
                         </small>
-                    </div> -->
-                </div>
-                <!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
-                <div class="mt-2">
-                    <textarea class="form-control form-control-sm" rows="3" placeholder="Descripción" name="strDescription" required></textarea>
-                    <!-- <div class="invalid-feedback" *ngIf="strCarrera.errors?.required">
-                        <small>
-                            Es necesario ingresar un nombre.
-                        </small>
-                    </div> -->
+                    </div>
                 </div>
                 <div class="mt-2">
-                    <textarea class="form-control form-control-sm" rows="3" placeholder="Ingredientes" name="strIngredients" required></textarea>
-                    <!-- <div class="invalid-feedback" *ngIf="strCarrera.errors?.required">
+                    <textarea [class.is-invalid]="strDescription.invalid && strDescription.touched" class="form-control form-control-sm" rows="3" placeholder="Descripción" name="strDescription" [(ngModel)]="cymbal.strDescription" required #strDescription="ngModel"></textarea>
+                    <div class="invalid-feedback" *ngIf="strDescription.errors?.required">
                         <small>
-                            Es necesario ingresar un nombre.
+                            Es necesario ingresar un Descripción.
                         </small>
-                    </div> -->
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <textarea [class.is-invalid]="strIngredients.invalid && strIngredients.touched" class="form-control form-control-sm" rows="3" placeholder="Ingredientes" name="strIngredients" [(ngModel)]="cymbal.strIngredients" required #strIngredients="ngModel"></textarea>
+                    <div class="invalid-feedback" *ngIf="strIngredients.errors?.required">
+                        <small>
+                            Es necesario ingresar los Ingredientes.
+                        </small>
+                    </div>
                 </div>
                 <div class="mt-2"> 
-                    <input class="form-control form-control-sm" type="number " placeholder="Número de Piezas" name="nmbPieces" required>
-                    <!-- <div class="invalid-feedback" *ngIf="strCarrera.errors?.required">
+                    <input  [class.is-invalid]="nmbPieces.invalid && nmbPieces.touched" class="form-control form-control-sm" type="number " placeholder="Número de Piezas" name="nmbPieces" [(ngModel)]="cymbal.nmbPieces" required #nmbPieces="ngModel">
+                    <div class="invalid-feedback" *ngIf="nmbPieces.errors?.required">
                         <small>
-                            Es necesario ingresar un nombre.
+                            Es necesario ingresar un numerode piezas.
                         </small>
-                    </div> -->
+                    </div>
                 </div>
                 <div class="mt-2">
-                    <input class="form-control form-control-sm" type="number " placeholder="Precio" name="nmbPrice" required>
-                    <!-- <div class="invalid-feedback" *ngIf="strCarrera.errors?.required">
+                    <input [class.is-invalid]="nmbPrice.invalid && nmbPrice.touched" class="form-control form-control-sm" type="number " placeholder="Precio" name="nmbPrice" [(ngModel)]="cymbal.nmbPrice" required #nmbPrice="ngModel">
+                    <div class="invalid-feedback" *ngIf="nmbPrice.errors?.required">
                         <small>
-                            Es necesario ingresar un nombre.
+                            Es necesario ingresar el precio.
                         </small>
-                    </div> -->
+                    </div>
                 </div>
                 <div class="mt-2">
-                    <select class="custom-select form-control form-control-sm" type="text" name="blnStatus">
-                        <!-- <option [ngValue]="true">Activo</option>
-                        <option [ngValue]="false">Inactivo</option> -->
+                    <select class="custom-select form-control form-control-sm" type="text" name="blnStatus" [(ngModel)]="cymbal.blnStatus" #blnStatus="ngModel">
+                        <option [ngValue]="true">Activo</option>
+                        <option [ngValue]="false">Inactivo</option>
                       </select>
                 </div>
 
                 <div class="mt-2">
-                    <button type="submit" class="btn btn-danger btn-sm" style="width: 47%;">Cancelar</button>
-                    <button type="submit" class="btn btn-success btn-sm float-right" style="width: 47%;">Registrar</button>
+                    <button [routerLink]="['/category-page']" type="submit" class="btn btn-danger btn-sm" style="width: 47%;">Cancelar</button>
+                    <button [disabled]="forma.invalid" type="submit" class="btn btn-success btn-sm float-right" style="width: 47%;">Registrar</button>
                 </div>
 
             </div>

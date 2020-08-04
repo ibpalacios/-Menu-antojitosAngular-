@@ -12,7 +12,19 @@ export class CymbalService {
   
   constructor(private http: HttpClient) { }
 
-  getCymbal(){
-    return this.http.get(`${this.URL}/getCymbal`).toPromise();
+  getCymbalByCategory(idCategory: string){
+    return this.http.get(`${this.URL}/getAllCymbalWhereId/${idCategory}`).toPromise();
+  }
+
+  getCymbalWithId(idCymbal: string){
+    return this.http.get(`${this.URL}/getCymbalById/${idCymbal}`).toPromise();
+  }
+
+  postCymbal(cymbal: CymbalModel){
+    return this.http.post(`${this.URL}/registerCymbal`, cymbal).toPromise();
+  }
+
+  updateCymbal(idCymbal: string, cymbalModel: CymbalModel){
+    return this.http.put(`${this.URL}/updateCymbal/${idCymbal}`, cymbalModel).toPromise();
   }
 }
