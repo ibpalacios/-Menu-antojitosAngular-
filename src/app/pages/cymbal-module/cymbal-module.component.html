@@ -21,8 +21,8 @@
                         <div>
                             <button type="button" class="btn btn-primary btn-sm form-control" id="dropdownReports" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">...</button>
                             <div class="dropdown-menu dropdown-menu-right shadow-lg " aria-labelledby="dropdownReports">
-                                <a type="button" class="dropdown-item">PDF</a>
-                                <a type="button" class="dropdown-item">Excel</a>
+                                <a (click)="exportPDF()" type="button" class="dropdown-item">PDF</a>
+                                <a (click)="exportAsXLSX()" type="button" class="dropdown-item">Excel</a>
                             </div>
                         </div>
                     </div>
